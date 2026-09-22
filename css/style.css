@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Midnight Ink Tattoo Studio — luxury dark/gold theme
+   Midnight Ink Tattoo Studio — luxury dark/antique-white theme
    ========================================================================== */
 
 :root {
@@ -7,9 +7,9 @@
   --ink-charcoal: #141414;
   --ink-charcoal-2: #1c1a17;
   --ink-line: #2a2620;
-  --gold: #c9a227;
-  --gold-soft: #d9bd63;
-  --gold-dim: #8a7220;
+  --gold: #d8cfb8;
+  --gold-soft: #ece6d4;
+  --gold-dim: #9a9077;
   --cream: #f3ede1;
   --grey: #a7a094;
   --grey-dim: #6f695e;
@@ -652,12 +652,16 @@ section { padding: 110px 0; position: relative; }
 .social-row a:hover { border-color: var(--gold); color: var(--gold); }
 .social-row svg { width: 17px; height: 17px; }
 
-.map-frame {
+.map-wrap {
   border: 1px solid var(--ink-line);
+  background: var(--ink-charcoal-2);
+}
+.map-frame {
   filter: grayscale(1) invert(0.92) contrast(0.9);
   width: 100%;
   height: 320px;
-  background: var(--ink-charcoal-2);
+  border: none;
+  display: block;
 }
 
 form.contact-form { display: flex; flex-direction: column; gap: 22px; }
