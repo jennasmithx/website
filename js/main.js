@@ -48,14 +48,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Contact form (client-side only — no backend wired up yet)
+  // Contact form — opens a pre-filled email to the studio via mailto:.
+  // This needs no backend/signup, but relies on the visitor having a mail
+  // app configured. Swap for a form service (Formspree, Netlify Forms) once
+  // the site is hosted somewhere, for a smoother no-app-required submit.
   var form = document.querySelector('.contact-form');
+  var STUDIO_EMAIL = 'book@midnightinktattoo.co.za';
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      var data = Object.fromEntries(new FormData(form).entries());
+      var subject = 'Consultation Enquiry — ' + (data.name || 'New Enquiry');
+      var body =
+        'Name: ' + (data.name || '') + '\n' +
+        'Phone / WhatsApp: ' + (data.phone || '') + '\n' +
+        'Email: ' + (data.email || '') + '\n' +
+        'Placement: ' + (data.placement || '') + '\n' +
+        'Approximate Size: ' + (data.size || '') + '\n\n' +
+        (data.message || '');
+
+      var mailtoLink = 'mailto:' + STUDIO_EMAIL +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+
+      window.location.href = mailtoLink;
+
       var msg = document.querySelector('.form-msg');
       if (msg) {
-        msg.textContent = 'Thank you — your enquiry has been noted. We will be in touch within 24 hours to confirm your consultation.';
+        msg.textContent = 'Opening your email app to send this through — if nothing opens, email us directly at ' + STUDIO_EMAIL + '.';
         msg.classList.add('show');
       }
       form.reset();
